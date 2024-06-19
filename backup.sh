@@ -30,3 +30,21 @@ then
 	echo
         exit 0
 fi
+
+# Basic Variables
+## Check does it have currect option
+if [ $# = 1 ] && [ $1 = "-t" ]
+then
+	echo 0x001, Argument error, \-h for help
+	exit 1
+fi
+
+## Check does it have any option
+if [ $# = 1 ]
+then
+	DIR=$1
+	TIME=0
+else
+	DIR=$2
+	TIME=1
+fi
