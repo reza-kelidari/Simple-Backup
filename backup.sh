@@ -68,3 +68,19 @@ then
 	echo 0x003, Directory error, \-h for help
 	exit 3
 fi
+
+
+
+# Making Backup
+
+## Advanced variales
+NAME=$(basename $(readlink -f $DIR))
+## Does script uses time option
+if [ $TIME = 1 ]
+then
+	NAME=$NAME-$(date +"%Y%m%d-%H%M")
+fi
+
+NAME=$NAME\.tar\.xz
+TEMP_DIR=\/tmp\/$NAME
+BACKUP_DIR=$DIR\/$NAME
