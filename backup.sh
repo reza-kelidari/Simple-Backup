@@ -5,14 +5,14 @@
 ## Checking arguments
 if [ $# -lt 1 ] || [ $# -gt 2 ]
 then
-        echo 0x001, Argument error, \-h for help
-        exit 1
+	echo 0x001, Argument error, \-h for help
+	exit 1
 fi
 
 ## Showing help
 if [ $1 = "-h" ];
 then
-        echo
+	echo
 	echo Simple Backup v0.1
 	echo Copyright 2024 Reza Kelidari
 	echo
@@ -28,7 +28,7 @@ then
 	echo 0x002: Directory not exists
 	echo 0x003: Provided directory is empty
 	echo
-        exit 0
+	exit 0
 fi
 
 
@@ -79,13 +79,13 @@ NAME=$(basename $(readlink -f $DIR))
 ## Does script uses time option
 if [ $TIME = 1 ]
 then
-	NAME=$NAME-$(date +"%Y%m%d-%H%M")
+	NAME=$NAME-$(date +"%Y-%m-%d")
 fi
 
 NAME=$NAME\.tar\.xz
 TEMP_DIR=\/tmp\/$NAME
-BACKUP_DIR=$DIR\/$NAME
 
 ## Backup script
-tar cfJ $TEMP_DIR $DIR
-mv $TEMP_DIR $BACKUP_DIR
+cd $DIR
+tar cfJ $TEMP_DIR *
+mv $TEMP_DIR $DIR/..
