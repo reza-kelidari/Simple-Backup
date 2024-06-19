@@ -31,6 +31,8 @@ then
         exit 0
 fi
 
+
+
 # Basic Variables
 ## Check does it have currect option
 if [ $# = 1 ] && [ $1 = "-t" ]
@@ -47,4 +49,22 @@ then
 else
 	DIR=$2
 	TIME=1
+fi
+
+
+
+# Checking provided directory
+
+## Checking does directory exists
+if [ ! -d $DIR ]
+then
+	echo 0x002, Directory error, \-h for help
+	exit 2
+fi
+
+## Checking does directory have contents
+if [ `find $DIR -mindepth 1 -maxdepth 1 | wc -l` -eq 0 ]
+then
+	echo 0x003, Directory error, \-h for help
+	exit 3
 fi
