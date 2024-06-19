@@ -75,6 +75,7 @@ fi
 
 ## Advanced variales
 NAME=$(basename $(readlink -f $DIR))
+
 ## Does script uses time option
 if [ $TIME = 1 ]
 then
@@ -84,3 +85,7 @@ fi
 NAME=$NAME\.tar\.xz
 TEMP_DIR=\/tmp\/$NAME
 BACKUP_DIR=$DIR\/$NAME
+
+## Backup script
+tar cfJ $TEMP_DIR $DIR
+mv $TEMP_DIR $BACKUP_DIR
